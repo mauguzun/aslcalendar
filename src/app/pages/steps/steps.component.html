@@ -1,0 +1,31 @@
+<div class="row ">
+    <div class="col-12 ">
+        <mat-card class="box" style="min-height: 200px;">
+
+            <mat-card-title>{{eventService.title}}</mat-card-title>
+            <mat-card-subtitle *ngIf="eventService.type">{{ eventService.getType()  }}</mat-card-subtitle>
+
+            <mat-horizontal-stepper [linear]="true" #stepper>
+
+                <mat-step>
+                    <ng-template matStepLabel>Event</ng-template>
+                    <p>Fill a form </p>
+                    <app-begin-form></app-begin-form>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Done</ng-template>
+                    <p>Pick date and time</p>
+                    <app-calendar></app-calendar>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Done</ng-template>
+
+                    <p>Please select users</p>
+                    <app-confirm></app-confirm>
+                    <div>
+                    </div>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </mat-card>
+    </div>
+</div>

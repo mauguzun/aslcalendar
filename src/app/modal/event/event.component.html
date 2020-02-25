@@ -1,0 +1,46 @@
+<h4 mat-dialog-title>
+  Edit Time
+</h4>
+
+
+<mat-dialog-content>
+
+  <mat-form-field hintLabel="Start" appearance="fill" class="fullwidth">
+    <mat-label>Start</mat-label>
+    <mat-select [(value)]="start">
+      <mat-option [value]="time.time" *ngFor="let time of times">{{time.time}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field hintLabel="End" appearance="fill" class="fullwidth">
+    <mat-label>End</mat-label>
+    <mat-select [(value)]="end">
+      <mat-option [value]="time.time" *ngFor="let time of times">{{time.time}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <!-- <mat-form-field hintLabel="Max 10 characters" appearance="fill" class="fullwidth">
+    <mat-label>Enter some input</mat-label>
+    <input matInput #input maxlength="23" placeholder="Ex. Nougat">
+    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+  </mat-form-field> -->
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions style="margin-top: 20px;">
+
+  <button mat-raised-button color="primary" (click)="save()" class="box">
+    <mat-icon>save</mat-icon>
+  </button>
+  <button mat-raised-button color="warn" (click)="delete()"  class="box"  style="float: right;">
+    <mat-icon>delete_sweep</mat-icon>
+  </button>
+
+  <!-- <button mat-icon-button color="warn"  style="float:right " [mat-dialog-close]="">
+       
+    </button> -->
+
+</mat-dialog-actions>

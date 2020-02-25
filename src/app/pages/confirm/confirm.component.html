@@ -1,0 +1,26 @@
+<div>
+
+
+    <mat-form-field hintLabel="One row one email" appearance="fill" class="fullwidth">
+
+        <mwl-text-input-autocomplete-container>
+            <textarea matInput placeholder="Type @ to search... " class="form-control" rows="14" (click)="update()"
+                [(ngModel)]="formControlValue" mwlTextInputAutocomplete [findChoices]="findChoices"
+                [getChoiceLabel]="getChoiceLabel">
+    </textarea>
+        </mwl-text-input-autocomplete-container>
+    </mat-form-field>
+
+
+ 
+  <mat-chip-list aria-label="Fish selection">
+    <mat-chip 
+    
+    (click)="remove(item)"
+    *ngFor="let item of clearArray">{{item}}</mat-chip>
+   
+  </mat-chip-list>
+  <button mat-raised-button color="accent" class="box" style="margin-top: 20px;">Save</button>
+ 
+
+</div>
