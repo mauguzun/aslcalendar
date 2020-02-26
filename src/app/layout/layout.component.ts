@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
+
+  public logined = false;
   constructor() { }
 
   ngOnInit() {
+    if (window.localStorage.getItem('token')) {
+      this.logined = true;
+    }
   }
 
 }

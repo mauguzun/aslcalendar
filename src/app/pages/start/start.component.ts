@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogConfig, MatSnackBar, MatDialog } from '@angular/material';
 import { EventComponent } from 'src/app/modal/event/event.component';
+import { EventService } from 'src/app/event.service';
 
 @Component({
   selector: 'app-start',
@@ -9,7 +10,7 @@ import { EventComponent } from 'src/app/modal/event/event.component';
 })
 export class StartComponent implements OnInit {
 
-  constructor(private snackBar: MatSnackBar, private dialog: MatDialog) { }
+  constructor(public eventService : EventService) { }
 
   ngOnInit() {
 

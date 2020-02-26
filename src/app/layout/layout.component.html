@@ -24,13 +24,16 @@
                 </div>
                 <div class="col-8 ">
                   
-                    <button mat-icon-button [matMenuTriggerFor]="menu" style="margin-top: 10px;float: right;" >
-                        <mat-icon>menu</mat-icon>
+                   
+
+                    <button mat-icon-button  [matMenuTriggerFor]="menu"   style="margin-top: 10px;float: right;" >
+                        <mat-icon>calendar_today</mat-icon>
                     </button>
+
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item [routerLink]="['/']">
-                            <mat-icon>home</mat-icon>
-                            <span>Images List</span>
+                            <mat-icon>calendar_today</mat-icon>
+                            <span>Add event </span>
                         </button>
                         <button mat-menu-item>
                             <mat-icon>dialpad</mat-icon>
@@ -46,14 +49,11 @@
                         </button>
                     </mat-menu>
 
-                    <button mat-icon-button  [routerLink]="['/step']"  style="margin-top: 10px;float: right;" >
-                        <mat-icon>calendar_today</mat-icon>
-                    </button>
-
-                    <button mat-icon-button  style="margin-top: 10px;float: right;" >
+                    <button mat-icon-button  [routerLink]="['/login']"   style="margin-top: 10px;float: right;" >
                         <mat-icon>account_circle</mat-icon>
                     </button>
 
+                
                 </div>
 
 

@@ -2,6 +2,7 @@ export class CalendarEvent {
     id?: number;
     title: string;
     type: number;
+    deadline: Date = new Date();
     notes: string;
     options: CalendarEventOption[];
     users: User[];

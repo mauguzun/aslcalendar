@@ -1,11 +1,18 @@
 <mat-card style="min-height: 200px;">
+    <!-- 
+    <button mat-fab aria-label="Example icon-button with a heart icon"
+     style="position: fixed;z-index: 9999 "
+        class="blob" (click)="addEvent()">
+        <mat-icon>event</mat-icon>
+    </button> -->
     <full-calendar #calendar [weekends]="false" [allDaySlot]="false" [minTime]="'08:00'" [maxTime]="'18:00'"
-        [slotDuration]="'00:15:00'" [slotLabelFormat]="{
+        [slotDuration]="'00:15:00'" (dateClick)="handleDateClick($event)" [slotLabelFormat]="{
                     hour: 'numeric',
                     minute: '2-digit',
                     meridiem: 'short',
-                    hour12:false}" [header]=" { left: 'prev,next ,today',right: 'timeGridWeek,timeGridDay,listWeek' }"
-        (select)="handleDateClick($event)" (eventClick)="eventClick($event)" selectable="true"
-        defaultView="timeGridWeek" [plugins]="calendarPlugins"></full-calendar>
+                    hour12:false}" [header]="header"
 
+        (eventClick)="eventClick($event)" selectable="true" [defaultView]="defaultView" [plugins]="calendarPlugins">
+    </full-calendar>
+ <!-- (select)="handleDateClick($event)" -->
 </mat-card>

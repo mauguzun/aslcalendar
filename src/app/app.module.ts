@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,12 +7,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutComponent } from './layout/layout.component';
 import { StartComponent } from './pages/start/start.component';
-import { FullCalendarModule  } from '@fullcalendar/angular'; // for FullCalendar!
+import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
 
 import {
   MatChipsModule,
   MatButtonModule,
-  MatListModule, 
+  MatListModule,
   MatSnackBarModule,
   MatProgressSpinnerModule,
   MatGridListModule,
@@ -31,7 +31,6 @@ import {
   MatStepperModule,
   MatProgressBarModule,
   MatSelectModule,
-  MatDialog,
   MatDialogModule
 } from '@angular/material';
 import { BeginFormComponent } from './pages/begin-form/begin-form.component';
@@ -40,6 +39,21 @@ import { EventComponent } from './modal/event/event.component';
 import { StepsComponent } from './pages/steps/steps.component';
 import { TextInputAutocompleteModule } from 'angular-text-input-autocomplete';
 import { ConfirmComponent } from './pages/confirm/confirm.component';
+import { DeviceDetectorModule } from 'ngx-device-detector';
+import { LoginComponent } from './pages/account/login/login.component';
+import { ResetComponent } from './pages/account/reset/reset.component';
+import { SetPasswordComponent } from './pages/account/set-password/set-password.component';
+import { CreateAccountComponent } from './pages/account/create-account/create-account.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth.interceptor';
+import { LogoutComponent } from './pages/account/logout/logout.component';
+
+
+const intProvider: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  multi: true,
+  useClass: AuthInterceptor
+}
 
 
 @NgModule({
@@ -52,6 +66,11 @@ import { ConfirmComponent } from './pages/confirm/confirm.component';
     EventComponent,
     StepsComponent,
     ConfirmComponent,
+    LoginComponent,
+    ResetComponent,
+    SetPasswordComponent,
+    CreateAccountComponent,
+    LogoutComponent,
   ],
   imports: [
     TextInputAutocompleteModule,
@@ -87,9 +106,13 @@ import { ConfirmComponent } from './pages/confirm/confirm.component';
     MatFormFieldModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatChipsModule
+    MatChipsModule,
+    DeviceDetectorModule.forRoot(),
+    HttpClientModule
+
   ],
-  providers: [],
+  providers: [intProvider],
+ // providers: [intProvider],
   bootstrap: [AppComponent],
   entryComponents: [EventComponent]
 

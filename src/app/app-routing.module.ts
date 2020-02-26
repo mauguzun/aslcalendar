@@ -5,6 +5,13 @@ import { StartComponent } from './pages/start/start.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
 import { EventComponent } from './modal/event/event.component';
 import { StepsComponent } from './pages/steps/steps.component';
+import { LoginComponent } from './pages/account/login/login.component';
+import { CreateAccountComponent } from './pages/account/create-account/create-account.component';
+import { ResetComponent } from './pages/account/reset/reset.component';
+import { SetPasswordComponent } from './pages/account/set-password/set-password.component';
+import { AuthGuard } from './auth.guard';
+import { LogoutComponent } from './pages/account/logout/logout.component';
+
 
 
 const routes: Routes = [
@@ -12,10 +19,18 @@ const routes: Routes = [
 
     path: '', component: LayoutComponent, children: [
       { path: '', component: StartComponent },
-      { path: 'step', component: StepsComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'create', component: CreateAccountComponent },
+      { path: 'reset', component: ResetComponent },
+      { path: 'confirm', component: SetPasswordComponent },
+      { path: 'logout', component: LogoutComponent },
 
-    ]
+      { path: 'step', canActivate:[AuthGuard] , component: StepsComponent },
+
+    ],
+
   },
+
 
 
 ];

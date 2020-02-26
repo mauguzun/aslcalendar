@@ -1,0 +1,42 @@
+<div class="row ">
+    <div class="col-12 ">
+        <mat-card class="box">
+
+            <mat-card-title>Please Login </mat-card-title>
+         
+            <!-- <div class="alert alert-warning" role="alert">
+                This is a warning alert—check it out!
+              </div> -->
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+
+                <mat-form-field hintLabel="Max 50 characters" appearance="fill" class="fullwidth">
+                    <mat-label>Email</mat-label>
+                    <input type="email"  name="Email"  formControlName="Email" required matInput #input maxlength="50" placeholder="Email ">
+                    <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
+                </mat-form-field>
+
+
+
+
+                <mat-form-field hintLabel="Max 50 characters" appearance="fill" class="fullwidth">
+                    <mat-label>Password</mat-label>
+                    <input type="password" name="Password" formControlName="Password" required matInput #input maxlength="50" placeholder="Password ">
+                    <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
+                </mat-form-field>
+
+
+
+
+               
+
+
+                <button [disabled]="form.invalid" style="margin-top: 20px;" mat-raised-button
+                    color="primary">Continue</button>
+
+                  <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+            </form>
+
+        </mat-card>
+    </div>
+</div>

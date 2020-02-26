@@ -3,28 +3,39 @@
 
     <mat-form-field hintLabel="Max 50 characters" appearance="fill" class="fullwidth">
         <mat-label>Title</mat-label>
-        <input     formControlName="title"   required matInput #input maxlength="50" placeholder="Title ">
+        <input formControlName="title" [(ngModel)]="title" required matInput #input maxlength="50" placeholder="Title ">
         <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="fullwidth">
+
         <mat-label>Select event type</mat-label>
-        <mat-select required formControlName="type"  >
-            <mat-option [value]="event.type" *ngFor="let event of eventService.eventType">{{event.text}}</mat-option>
+        <mat-select required formControlName="type">
+            <mat-option [value]="event.type" selected *ngFor="let event of eventService.eventType">{{event.text}}
+            </mat-option>
         </mat-select>
         <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill" class="fullwidth">
+        <mat-label>Pooling Deadline</mat-label>
+        <input formControlName="date" matInput required [min]="today" (click)="picker.open()" [matDatepicker]="picker"
+            [placeholder]="">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-hint align="end">This field is required</mat-hint>
     </mat-form-field>
 
 
     <mat-form-field hintLabel="Max 400 characters" appearance="fill" class="fullwidth">
         <mat-label>Enter some notes</mat-label>
 
-        <textarea matInput #text 
-        maxlength="400"
-         name="notes"  placeholder="Notes"></textarea>
+        <textarea matInput #text maxlength="400" name="notes" placeholder="Notes"></textarea>
         <mat-hint align="end">{{text.value?.length || 0}}/400</mat-hint>
     </mat-form-field>
 
 
-    <button  [disabled]="form.invalid"  style="margin-top: 20px;" matStepperNext mat-raised-button color="primary">Continue</button>
+    <button [disabled]="form.invalid" style="margin-top: 20px;" matStepperNext mat-raised-button
+        color="primary">Continue</button>
 </form>
