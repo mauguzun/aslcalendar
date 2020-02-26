@@ -12,7 +12,7 @@
                     meridiem: 'short',
                     hour12:false}" [header]="header"
 
-        (eventClick)="eventClick($event)" selectable="true" [defaultView]="defaultView" [plugins]="calendarPlugins">
+        (eventClick)="eventClick($event)"  [defaultView]="defaultView" [plugins]="calendarPlugins">
     </full-calendar>
- <!-- (select)="handleDateClick($event)" -->
+ <!-- (select)="handleDateClick($event)" selectable="true" -->
 </mat-card>
