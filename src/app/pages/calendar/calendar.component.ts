@@ -50,12 +50,10 @@ export class CalendarComponent implements OnInit {
   handleDateClick(arg) { // handler method
 
 
-   
-
     this.service.start = arg.date;
     this.service.end = arg.date;
-    // this.service.start = arg.start;
-    // this.service.end = arg.end;
+
+
 
     if (this.eventService.calendarEvent == null) {
       this.snackBar.open('Please fill form before on first page', null, { duration: 2000 });
@@ -79,10 +77,9 @@ export class CalendarComponent implements OnInit {
     }
 
 
-    this.eventService.optionsList = this.eventService.optionsList.filter(x => x.id != arg.event.id);
-    alert(this.eventService.optionsList.length);
+    this.eventService.calendarEvent.options = this.eventService.calendarEvent.options.filter(x => x.id != arg.event.id);
     this.calendarApi.removeAllEvents();
-    this.eventService.optionsList.forEach(element => {
+    this.eventService.calendarEvent.options.forEach(element => {
       this.calendarApi.addEvent({
         start: element.start,
         end: element.end,
@@ -105,6 +102,7 @@ export class CalendarComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.minWidth = '80%';
 
+
     const dialogRef = this.dialog.open(EventComponent, dialogConfig);
 
 
@@ -114,11 +112,12 @@ export class CalendarComponent implements OnInit {
       if (this.service.start && this.service.end) {
 
         const option = new CalendarEventOption(
-          new Date().toString(),
           this.service.start,
           this.service.end);
 
-        this.eventService.optionsList.push(option);
+
+
+        this.eventService.calendarEvent.options.push(option);
 
         this.calendarApi.addEvent({
           start: option.start,

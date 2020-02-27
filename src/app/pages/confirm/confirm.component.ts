@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { OptionService } from 'src/app/option.service';
-import { TextInputAutocompleteModule } from 'angular-text-input-autocomplete';
-import { ReplaySubject } from 'rxjs';
+import { EventService } from 'src/app/event.service';
+import { ApiService } from '../api.service';
+import { CalendarEvent } from 'src/app/calendar-event.model';
+import { MatSnackBar } from '@angular/material';
+import { Route, Router } from '@angular/router';
+
 
 
 
@@ -14,6 +17,7 @@ export class ConfirmComponent implements OnInit {
 
 
   private _formControlValue: string = '';
+  public doLogin = false;
 
   get formControlValue(): string {
     return this._formControlValue;
@@ -26,9 +30,17 @@ export class ConfirmComponent implements OnInit {
     this.update()
   }
   clearArray = [];
-  constructor() { }
+  constructor(
+    public eventService: EventService,
+    private route: Router,
+    private apiService: ApiService,
+    private snackBar: MatSnackBar) {
+
+  }
 
   ngOnInit() {
+
+
   }
 
 
@@ -61,6 +73,31 @@ export class ConfirmComponent implements OnInit {
     this.clearArray.forEach(element => {
       element.trim();
     });
+    this.eventService.calendarEvent.emails = this.clearArray;
+  }
+
+  save() {
+    this.doLogin = true;
+    this.apiService.createEvent(this.eventService.calendarEvent).subscribe(e => {
+
+
+
+      if (e['error'] === null) {
+        const id = this.eventService.calendarEvent.id;
+        this.eventService.calendarEvent = new CalendarEvent();
+        this._formControlValue = null;
+        this.route.navigate(['/view/' + id]);
+      } else {
+        this.snackBar.open(e['error'], null, { duration: 2000 });
+      }
+    },
+      err => {
+        this.snackBar.open('servers error', null, { duration: 2000 });
+      },
+      () => {
+        this.doLogin = false;
+      }
+    )
   }
 
 }

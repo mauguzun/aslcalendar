@@ -19,9 +19,9 @@
 
 
     <mat-form-field appearance="fill" class="fullwidth">
-        <mat-label>Pooling Deadline</mat-label>
+        <mat-label> Deadline</mat-label>
         <input formControlName="date" matInput required [min]="today" (click)="picker.open()" [matDatepicker]="picker"
-            [placeholder]="">
+            [placeholder]="Deadline ">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-hint align="end">This field is required</mat-hint>
@@ -31,7 +31,7 @@
     <mat-form-field hintLabel="Max 400 characters" appearance="fill" class="fullwidth">
         <mat-label>Enter some notes</mat-label>
 
-        <textarea matInput #text maxlength="400" name="notes" placeholder="Notes"></textarea>
+        <textarea matInput #text formControlName="notes"  maxlength="400" name="notes" placeholder="Notes"></textarea>
         <mat-hint align="end">{{text.value?.length || 0}}/400</mat-hint>
     </mat-form-field>
 

@@ -10,7 +10,6 @@ export class EventService {
 
 
   public calendarEvent: CalendarEvent = null;
-  public optionsList: CalendarEventOption[] = [];
 
   public eventType =
     [

@@ -43,8 +43,8 @@ export class EventComponent implements OnInit {
 
   save() {
 
-    if (this.times.find(x => x.time === this.start).id > this.times.find(x => x.time === this.end).id) {
-      this.snackBar.open('Start can`t be greater then end  , please fix it  !', null, { duration: 2000 })
+    if (this.times.find(x => x.time === this.start).id >= this.times.find(x => x.time === this.end).id) {
+      this.snackBar.open('Start time must be greater  !', null, { duration: 2000 })
       return;
     } else {
       this.service.start = this.convert(this.service.start, this.start);

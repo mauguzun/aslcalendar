@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+
+    <mat-form-field hintLabel="Max 50 characters" appearance="fill" class="fullwidth">
+        <mat-label>Email</mat-label>
+        <input type="email" name="Email" formControlName="Email" required matInput #input maxlength="50"
+            placeholder="Email ">
+        <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
+    </mat-form-field>
+
+
+
+
+    <mat-form-field hintLabel="Max 50 characters" appearance="fill" class="fullwidth">
+        <mat-label>Name</mat-label>
+        <input type="text" name="Name" formControlName="Name" required matInput #input maxlength="50"
+            placeholder="Name ">
+        <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
+    </mat-form-field>
+
+
+
+
+    <button *ngIf="!doLogin" [disabled]="form.invalid" style="margin-top: 20px;" mat-raised-button color="primary">Save
+        my name </button>
+    <br>
+</form>

@@ -1,25 +1,37 @@
+import { stringify } from 'querystring';
+
 export class CalendarEvent {
-    id?: number;
+    id?: number = Math.floor(Date.now() / 1000);
     title: string;
     type: number;
-    deadline: Date = new Date();
+    deadline: Date | string = new Date();
     notes: string;
-    options: CalendarEventOption[];
-    users: User[];
+    options: CalendarEventOption[] = [];
+    emails: string[] = []
 
 }
 export class CalendarEventOption {
-    id: string;
-    start: Date;
-    end: Date;
+    id: number = Math.floor(Date.now() / 1000)
+    start: Date | string;
+    end: Date | string;
     voted?: Vote[];
 
-    constructor(id, start, end) {
-        this.id = id;
+    constructor(start, end) {
         this.start = start;
         this.end = end;
     }
+   
 }
+
+export class ViewLogin {
+    name: string;
+    email: string;
+    constructor(name, email) {
+        this.name = name;
+        this.email = email;
+    }
+}
+
 
 export class User {
 

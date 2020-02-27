@@ -20,7 +20,11 @@
     *ngFor="let item of clearArray">{{item}}</mat-chip>
    
   </mat-chip-list>
-  <button mat-raised-button color="accent" class="box" style="margin-top: 20px;">Save</button>
- 
+  <button 
+  *ngIf="!doLogin"
+  [disabled]="!eventService.calendarEvent ||eventService.calendarEvent.options == 0"
+  mat-raised-button color="accent" class="box" (click)="save()" style="margin-top: 20px;">Save</button>
 
+
+  <mat-progress-bar *ngIf="doLogin" mode="indeterminate"></mat-progress-bar><br><br>
 </div>

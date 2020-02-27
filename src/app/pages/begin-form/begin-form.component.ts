@@ -5,6 +5,7 @@ import { EventService } from 'src/app/event.service';
 import { CalendarEvent } from 'src/app/calendar-event.model';
 import { ActivatedRoute } from '@angular/router';
 import { ThrowStmt } from '@angular/compiler';
+import * as moment from 'moment';
 
 
 @Component({
@@ -18,11 +19,7 @@ export class BeginFormComponent implements OnInit {
 
   public today = new Date();
   form: FormGroup;
-  constructor(public eventService: EventService, private route: ActivatedRoute) {
-
-
-
-  }
+  constructor(public eventService: EventService, private route: ActivatedRoute) {}
 
   ngOnInit() {
 
@@ -37,6 +34,7 @@ export class BeginFormComponent implements OnInit {
       title: new FormControl(null, [Validators.required]),
       type: new FormControl(this._groupFromQuery, [Validators.required]),
       date: new FormControl(null, [Validators.required]),
+      notes: new FormControl(null, []),
     });
 
   }
@@ -50,6 +48,8 @@ export class BeginFormComponent implements OnInit {
     this.eventService.calendarEvent.deadline = formData.date;
     this.eventService.calendarEvent.type = formData.type;
     this.eventService.calendarEvent.notes = formData.notes;
+
+    console.log(this.eventService.calendarEvent)
 
   }
 }

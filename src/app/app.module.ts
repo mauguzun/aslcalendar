@@ -47,6 +47,8 @@ import { CreateAccountComponent } from './pages/account/create-account/create-ac
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 import { LogoutComponent } from './pages/account/logout/logout.component';
+import { ViewComponent } from './pages/view/view.component';
+import { ViewLoginComponent } from './modal/view-login/view-login.component';
 
 
 const intProvider: Provider = {
@@ -71,6 +73,8 @@ const intProvider: Provider = {
     SetPasswordComponent,
     CreateAccountComponent,
     LogoutComponent,
+    ViewComponent,
+    ViewLoginComponent,
   ],
   imports: [
     TextInputAutocompleteModule,
@@ -112,9 +116,9 @@ const intProvider: Provider = {
 
   ],
   providers: [intProvider],
- // providers: [intProvider],
+  // providers: [intProvider],
   bootstrap: [AppComponent],
-  entryComponents: [EventComponent]
+  entryComponents: [EventComponent, ViewLoginComponent]
 
 })
 export class AppModule { }

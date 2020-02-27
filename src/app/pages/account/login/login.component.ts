@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const formData = this.form.value;
 
-    this.doLogin = true;
+     this.doLogin = true;  
     this.api.login(formData.Email, formData.Password).subscribe(e => {
 
       if (e['error'] === null) {
@@ -52,7 +52,9 @@ export class LoginComponent implements OnInit {
         this.snackBar.open(e['error'], null, { duration: 2000 });
       }
       this.doLogin = false;
-    })
+    },
+      err => { this.snackBar.open('servers error', null, { duration: 2000 }); },
+      () => { this.doLogin = false; })
 
   }
 
