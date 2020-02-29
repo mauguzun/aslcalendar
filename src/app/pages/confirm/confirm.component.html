@@ -22,9 +22,9 @@
   </mat-chip-list>
   <button 
   *ngIf="!doLogin"
-  [disabled]="!eventService.calendarEvent ||eventService.calendarEvent.options == 0"
+  [disabled]="!eventService.calendarEvent || eventService.calendarEvent.options.length == 0"
   mat-raised-button color="accent" class="box" (click)="save()" style="margin-top: 20px;">Save</button>
 
 
-  <mat-progress-bar *ngIf="doLogin" mode="indeterminate"></mat-progress-bar><br><br>
+  <mat-progress-bar   *ngIf="doLogin" mode="indeterminate"></mat-progress-bar><br><br>
 </div>

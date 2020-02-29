@@ -3,7 +3,7 @@
 
     <mat-form-field hintLabel="Max 50 characters" appearance="fill" class="fullwidth">
         <mat-label>Title</mat-label>
-        <input formControlName="title" [(ngModel)]="title" required matInput #input maxlength="50" placeholder="Title ">
+        <input formControlName="title"  required matInput #input maxlength="50" placeholder="Title ">
         <mat-hint align="end">{{input.value?.length || 0}}/50</mat-hint>
     </mat-form-field>
 
@@ -21,7 +21,7 @@
     <mat-form-field appearance="fill" class="fullwidth">
         <mat-label> Deadline</mat-label>
         <input formControlName="date" matInput required [min]="today" (click)="picker.open()" [matDatepicker]="picker"
-            [placeholder]="Deadline ">
+            placeholder="Deadline ">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <mat-hint align="end">This field is required</mat-hint>

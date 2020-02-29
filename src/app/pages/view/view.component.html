@@ -1,6 +1,7 @@
 <div class="row " (click)="open()">
     <div class="col-12 " >
-        <mat-card class="box"  *ngIf="event ;else notEvent " style="min-height: 200px;">
+        <mat-card class="box"  *ngIf="event " style="min-height: 200px;">
+        <!-- <mat-card class="box"  *ngIf="event ;else notEvent " style="min-height: 200px;"> -->
 
             <mat-card-title *ngIf="event">{{event.title}}</mat-card-title>
             <mat-card-subtitle *ngIf="event"> <b>deadline </b>{{event.deadline}}</mat-card-subtitle>
@@ -29,7 +30,7 @@
             </mat-card-subtitle>
 
         </mat-card>
-        <ng-template #notEvent>
+        <!-- <ng-template #notEvent>
             <div>
                 <mat-card class="box" >
                     <mat-card-title >Event not exist </mat-card-title>
@@ -37,7 +38,7 @@
         
                 </mat-card>
             </div>
-        </ng-template>
+        </ng-template> -->
     
     </div>
    
