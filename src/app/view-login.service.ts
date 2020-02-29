@@ -12,15 +12,17 @@ export class ViewLoginService {
 
   getData(): ViewLogin | null {
 
-    if (window.localStorage.getItem('name')) {
-      return new ViewLogin(window.localStorage.getItem('name'), window.localStorage.getItem("emails"));
+    if (window.localStorage.getItem('name') && window.localStorage.getItem("email")) {
+      return new ViewLogin(window.localStorage.getItem('name'), window.localStorage.getItem("email"));
     }
     return null;
   }
 
   setData(viewLogin: ViewLogin) {
-    console.log(viewLogin)
-    window.localStorage.setItem('name',viewLogin.name)
-    window.localStorage.setItem('email',viewLogin.email)
+
+   
+
+    window.localStorage.setItem('name', viewLogin.name)
+    window.localStorage.setItem('email', viewLogin.email)
   }
 }

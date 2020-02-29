@@ -1,30 +1,54 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { CalendarEvent } from '../calendar-event.model';
+import { CalendarEvent, ViewLogin } from '../calendar-event.model';
 import * as moment from 'moment';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  getEvent: any;
-
-
-  viewEvent(id:string) {
-    return this.http.get(`${environment.baseUrl}/viewevent?id=${id}`);
-  }
-
   constructor(private http: HttpClient) { }
 
 
-  login(email: string, password: string) {
-    return this.http.post(`${environment.baseUrl}/home`, { email, password });
+  setStatus(id: string, status: string): Observable<any> {
+    return this.http.get(`${environment.baseUrl}status?id=${id}&status=${status}`);
+  }
+
+  getEvents(): Observable<any> {
+    return this.http.get(`${environment.baseUrl}eventlist`);
+  }
+
+  getManage(id: string): Observable<any> {
+    return this.http.get(`${environment.baseUrl}manage?id=${id}`);
   }
 
 
-  createEvent(argEvent: CalendarEvent) {
+
+  vote(event: CalendarEvent, viewLogin: ViewLogin, selected: Set<string>, code: string | null): Observable<any> {
+    return this.http.post(`${environment.baseUrl}vote?id=${event.id}`, { viewLogin, selected: [...selected], code });
+  }
+
+
+
+
+
+
+  viewEvent(id: string, viewLogin: ViewLogin): Observable<any> {
+    return this.http.post(`${environment.baseUrl}viewevent?id=${id}`, { viewLogin });
+  }
+
+
+
+
+  login(email: string, password: string): Observable<any> {
+    return this.http.post(`${environment.baseUrl}home`, { email, password });
+  }
+
+
+  createEvent(argEvent: CalendarEvent) : Observable<any> {
 
     const event = Object.assign({}, argEvent);
     event.deadline = moment(event.deadline).format('YYYY-MM-DD HH:mm:ss');
@@ -33,7 +57,7 @@ export class ApiService {
       iterator.end = moment(iterator.end).format('YYYY-MM-DD HH:mm:ss');
     }
 
-    return this.http.post(`${environment.baseUrl}/event`, { event });
+    return this.http.post(`${environment.baseUrl}event`, { event });
   }
 
 

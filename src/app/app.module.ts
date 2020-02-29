@@ -31,7 +31,9 @@ import {
   MatStepperModule,
   MatProgressBarModule,
   MatSelectModule,
-  MatDialogModule
+  MatDialogModule,
+  MatTreeModule,
+  MatBadgeModule
 } from '@angular/material';
 import { BeginFormComponent } from './pages/begin-form/begin-form.component';
 import { CalendarComponent } from './pages/calendar/calendar.component';
@@ -49,6 +51,8 @@ import { AuthInterceptor } from './auth.interceptor';
 import { LogoutComponent } from './pages/account/logout/logout.component';
 import { ViewComponent } from './pages/view/view.component';
 import { ViewLoginComponent } from './modal/view-login/view-login.component';
+import { EventListComponent } from './pages/event-list/event-list.component';
+import { ManageComponent } from './pages/manage/manage.component';
 
 
 const intProvider: Provider = {
@@ -75,6 +79,9 @@ const intProvider: Provider = {
     LogoutComponent,
     ViewComponent,
     ViewLoginComponent,
+    EventListComponent,
+    ManageComponent,
+
   ],
   imports: [
     TextInputAutocompleteModule,
@@ -112,7 +119,8 @@ const intProvider: Provider = {
     ReactiveFormsModule,
     MatChipsModule,
     DeviceDetectorModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    MatBadgeModule
 
   ],
   providers: [intProvider],

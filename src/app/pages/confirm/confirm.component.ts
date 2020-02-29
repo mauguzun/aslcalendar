@@ -48,9 +48,10 @@ export class ConfirmComponent implements OnInit {
     return ['info@lifa.lv',
       'fbrisedoux@aslairlines.com',
       'rkyrnytskyi@aslairlines.com',
-      'vadims.krutovs@gmail.com',
       'schebour@aslairlines.com',
-      'denis@lifa.lv', 'FDEBIASIO@aslaviationholdings.com'].filter(item =>
+      'dshabalin@lifa.lv',
+      'illarion.medvedev@lifa.lv',
+       'FDEBIASIO@aslaviationholdings.com'].filter(item =>
         item.toLowerCase().includes(searchText.toLowerCase())
       );
 
@@ -86,7 +87,7 @@ export class ConfirmComponent implements OnInit {
         const id = this.eventService.calendarEvent.id;
         this.eventService.calendarEvent = new CalendarEvent();
         this._formControlValue = null;
-        this.route.navigate(['/view/' + id]);
+        this.route.navigate(['/manage/' + id]);
       } else {
         this.snackBar.open(e['error'], null, { duration: 2000 });
       }

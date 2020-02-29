@@ -6,21 +6,23 @@ export class CalendarEvent {
     type: number;
     deadline: Date | string = new Date();
     notes: string;
+    status = 1;
     options: CalendarEventOption[] = [];
-    emails: string[] = []
+    emails: string[] = [];
 
 }
 export class CalendarEventOption {
-    id: number = Math.floor(Date.now() / 1000)
+    id: number = Math.floor(Date.now() / 1000);
     start: Date | string;
     end: Date | string;
-    voted?: Vote[];
+    voted?: [];
+    place?: number;
 
     constructor(start, end) {
         this.start = start;
         this.end = end;
     }
-   
+
 }
 
 export class ViewLogin {
@@ -33,11 +35,3 @@ export class ViewLogin {
 }
 
 
-export class User {
-
-}
-export class Vote {
-    user: User;
-    date: Date;
-    options: CalendarEventOption;
-}

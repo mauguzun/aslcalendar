@@ -1,0 +1,60 @@
+<div class="row ">
+    <div class=" col-12" style="margin-top:10px ;">
+        <mat-card class="box">
+            <mat-card-title *ngIf="event">{{event.title}}</mat-card-title>
+            <mat-card-subtitle *ngIf="event">{{event.deadline}}</mat-card-subtitle>
+            <p *ngIf="event">
+                {{event.notes}}
+            </p>  
+
+
+            <mat-form-field style="width:100%" (click)="copy(input.value)" >
+                <mat-label>Copy to clipboard</mat-label>
+                <input  
+                  matInput #input [value]="'https://crew.asl.nl.eu.org/?'+ event.id  +'code=158282454590535'" >
+                <mat-icon matSuffix>file_copy</mat-icon>
+              
+            </mat-form-field>
+            <mat-form-field *ngIf="event" style="width:100%">
+                <mat-label>Change Event Status </mat-label>
+                <mat-select [(value)]="status" (selectionChange)="openPanel($event)">
+                    <mat-option [disabled]="item.type <  event.status || item.type  ==  event.status"
+                        value="{{item.type}}" *ngFor="let item of eventService.eventStatus">{{item.text}}</mat-option>
+
+
+                </mat-select>
+            </mat-form-field>
+
+            <mat-progress-bar *ngIf="load" mode="indeterminate"></mat-progress-bar><br><br>
+
+
+            <span *ngIf="changeStatus">
+                <p>Unfortunately it is impossible to return the status back, please make sure that you really want to
+                    change the status of the event.!</p>
+                <button style="margin-right: 5px;" (click)="reset()" mat-raised-button color="accent">Cancel</button>
+                <button (click)="save()" mat-raised-button color="warn">Save</button>
+            </span>
+
+        </mat-card>
+
+    </div>
+</div>
+
+
+<div class="row ">
+    <div class=" col-12" style="margin-top:5px ;" *ngFor="let item of options">
+
+        <mat-card class="box">
+            <mat-card-title><small [matBadge]="item.place" matBadgeColor="warn" matBadgeOverlap="false">
+                    {{ item.start | date   }}</small> </mat-card-title>
+            <mat-card-subtitle> {{ item.start | date : 'shortTime'  }} - {{ item.end | date : 'shortTime'  }}
+            </mat-card-subtitle>
+
+            <mat-chip-list>
+                <mat-chip *ngFor="let user of item.vote">{{user.email}}</mat-chip>
+            </mat-chip-list>
+
+        </mat-card>
+
+    </div>
+</div>

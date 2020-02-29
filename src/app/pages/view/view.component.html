@@ -1,23 +1,45 @@
 <div class="row " (click)="open()">
-    <div class="col-12 ">
-        <mat-card class="box" style="min-height: 200px;">
+    <div class="col-12 " >
+        <mat-card class="box"  *ngIf="event ;else notEvent " style="min-height: 200px;">
 
             <mat-card-title *ngIf="event">{{event.title}}</mat-card-title>
             <mat-card-subtitle *ngIf="event"> <b>deadline </b>{{event.deadline}}</mat-card-subtitle>
 
 
 
-            <mat-selection-list #events [disabled]="!viewLogin" *ngIf="event && event.options">
-            
-                <mat-list-option (click)="vote(item.id)"  *ngFor="let item of event.options" style="padding: 10 px;">
+            <mat-selection-list #options [disabled]="!viewLogin  ||  event.status > 1  " *ngIf="event && event.options">
+
+                <mat-list-option [selected]="selected.has(item.id)" (click)="vote(item.id)"
+                    *ngFor="let item of event.options" style="padding: 10 px;">
                     <small>{{ item.start | date   }}</small>
                     {{ item.start | date : 'shortTime'  }} - {{ item.end | date : 'shortTime'  }}
                     <mat-divider></mat-divider>
                 </mat-list-option>
-           
+
             </mat-selection-list>
             <br>
+
+            <button (click)="save()" [disabled]="!viewLogin  ||  event.status > 1  " style="margin-top: 20px;"
+                mat-raised-button color="primary">Choose</button>
+
             <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar><br><br>
+
+            <mat-card-subtitle (click)="changeViewLogin()" style="cursor: pointer;" *ngIf=" 
+            viewLogin != null &&  viewLogin.email"> Not <b> {{viewLogin.email }} </b> ? Click here to change hame
+            </mat-card-subtitle>
+
         </mat-card>
+        <ng-template #notEvent>
+            <div>
+                <mat-card class="box" >
+                    <mat-card-title >Event not exist </mat-card-title>
+                    <img mat-card-image src="https://avmanagement.net/wp-content/uploads/2019/07/meeting-gillespie-0719.png" alt="Photo of a Shiba Inu">
+        
+                </mat-card>
+            </div>
+        </ng-template>
+    
     </div>
+   
+
 </div>

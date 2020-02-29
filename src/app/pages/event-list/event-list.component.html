@@ -1,0 +1,28 @@
+<div class="row " *ngIf="events && events.length > 0">
+    <div class="col-lg-4 col-md-6  col-sm-12" style="margin-top:10px ;" *ngFor="let item of events">
+
+        <mat-card class="box" 
+        style="cursor: pointer;"
+        [routerLink]="['/manage/' + item.id ]" >
+            <mat-card-title >{{item.title}}</mat-card-title>
+            <mat-card-subtitle>{{item.deadline}}</mat-card-subtitle>
+            <mat-card-subtitle>status : active</mat-card-subtitle>
+         
+
+
+                
+            
+        </mat-card>
+    </div>
+
+</div>
+<div class="row " *ngIf="events != null &&  events.length ==  0">
+    <div class="col-12" style="margin-top:10px ;" >
+
+        <mat-card class="box">
+Not events yet
+        </mat-card>
+     
+    </div>
+
+</div>

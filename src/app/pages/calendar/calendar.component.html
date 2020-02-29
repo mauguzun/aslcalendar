@@ -5,16 +5,13 @@
         class="blob" (click)="addEvent()">
         <mat-icon>event</mat-icon>
     </button> -->
-    <full-calendar
-    [timeZone]="local"
-    #calendar [weekends]="false" [allDaySlot]="false" [minTime]="'08:00'" [maxTime]="'18:00'"
-        [slotDuration]="'00:15:00'" (dateClick)="handleDateClick($event)" [slotLabelFormat]="{
+    <full-calendar [timeZone]="local" #calendar [weekends]="false" [allDaySlot]="false" [minTime]="'08:00'"
+        [maxTime]="'18:00'" [slotDuration]="'00:15:00'" (dateClick)="handleDateClick($event)" [slotLabelFormat]="{
                     hour: 'numeric',
                     minute: '2-digit',
                     meridiem: 'short',
-                    hour12:false}" [header]="header"
-
-        (eventClick)="eventClick($event)"  [defaultView]="defaultView" [plugins]="calendarPlugins">
+                    hour12:false}" [header]="header" (eventClick)="eventClick($event)" [defaultView]="defaultView"
+        [plugins]="calendarPlugins">
     </full-calendar>
- <!-- (select)="handleDateClick($event)" selectable="true" -->
+    <!-- (select)="handleDateClick($event)" selectable="true" -->
 </mat-card>

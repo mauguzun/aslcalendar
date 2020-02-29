@@ -51,7 +51,7 @@ export class CalendarComponent implements OnInit {
 
 
     this.service.start = arg.date;
-    this.service.end = arg.date;
+    this.service.end = moment(arg.date).add(15, 'm').toDate();
 
 
 

@@ -12,6 +12,8 @@ import { SetPasswordComponent } from './pages/account/set-password/set-password.
 import { AuthGuard } from './auth.guard';
 import { LogoutComponent } from './pages/account/logout/logout.component';
 import { ViewComponent } from './pages/view/view.component';
+import { EventListComponent } from './pages/event-list/event-list.component';
+import { ManageComponent } from './pages/manage/manage.component';
 
 
 
@@ -26,9 +28,12 @@ const routes: Routes = [
       { path: 'confirm', component: SetPasswordComponent },
       { path: 'logout', component: LogoutComponent },
       { path: 'view/:id', component: ViewComponent },
- 
-      { path: 'step', canActivate:[AuthGuard] , component: StepsComponent },
 
+      { path: 'step', canActivate: [AuthGuard], component: StepsComponent },
+
+
+      { path: 'events', canActivate: [AuthGuard], component: EventListComponent },
+      { path: 'manage/:id', canActivate: [AuthGuard], component: ManageComponent },
     ],
 
   },

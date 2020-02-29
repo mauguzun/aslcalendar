@@ -13,6 +13,7 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit() {
     if (window.localStorage.getItem('token')) {
+    
       this.logined = true;
     }
   }

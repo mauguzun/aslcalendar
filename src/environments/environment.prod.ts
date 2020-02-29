@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl:  "http://localhost/crew/public/",
+  baseUrl:  "https://crew-server.asl.nl.eu.org/",
 };
